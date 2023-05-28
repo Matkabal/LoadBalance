@@ -3,9 +3,9 @@ package com.matkabal.loadbalance.test;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import com.matkabal.loadbalance.application.JobImplTest;
 import com.matkabal.loadbalance.entities.Job;
 import com.matkabal.loadbalance.service.LoadBalanceService;
+import com.matkabal.loadbalance.test.entities.JobImplTest;
 
 public class LoadBalanceTest {
 	

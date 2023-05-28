@@ -45,6 +45,7 @@ public class LoadBalanceService<T> {
 		if (!listWithPreferences.isEmpty()) {
 			Collections.reverse(listWithPreferences);
 			decidingPreference(listWithPreferences);
+			verifyExistsActualJobInRunnedJob();
 
 		} else {
 			setActualJobForStack();
@@ -82,7 +83,6 @@ public class LoadBalanceService<T> {
 		String nameJob = listWithPreferences.stream().map(job -> job.getNameJob()).findFirst()
 				.orElse(Utilities.EMPTY_STRING);
 		actualJob = mapNumberFromName.get(nameJob);
-		verifyExistsActualJobInRunnedJob();
 		lowerPreference();
 		removeJobFromStack();
 	}
