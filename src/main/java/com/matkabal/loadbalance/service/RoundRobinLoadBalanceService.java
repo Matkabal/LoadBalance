@@ -10,10 +10,11 @@ import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import com.matkabal.loadbalance.LoadBalance;
 import com.matkabal.loadbalance.entities.Job;
 import com.matkabal.loadbalance.util.Utilities;
 
-public class LoadBalanceService<T> {
+public class RoundRobinLoadBalanceService<T> implements LoadBalance {
 
 	private Map<Integer, Job<T>> listJobs = new HashMap();
 	private Map<String, Integer> mapNumberFromName = new HashMap<String, Integer>();
@@ -22,7 +23,8 @@ public class LoadBalanceService<T> {
 	private int numberTotalOfJobs = 0;
 	private int actualJob = 0;
 
-	public void addJobs(String jobName, Job<T> job) {
+	@Override
+	public void addJobs(String jobName, Job job) {
 		job.setNameJob(jobName);
 		numberTotalOfJobs++;
 		mapNumberFromName.put(jobName, numberTotalOfJobs);
@@ -36,7 +38,14 @@ public class LoadBalanceService<T> {
 	}
 
 	public void addPreferenceWithName(String name, int preference){
-		listJobs.get(mapNumberFromName.get(name)).setPreference(preference);
+		try{
+			listJobs.get(mapNumberFromName.get(name)).setPreference(preference);
+		}catch (NullPointerException exception){
+			System.out.println("Não se pode adicionar preferências em jobs que não existem");
+		}
+		catch (Exception exception){
+			exception.printStackTrace();
+		}
 	}
 
 	private void analising() {

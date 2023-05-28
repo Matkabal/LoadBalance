@@ -1,15 +1,15 @@
 package com.matkabal.loadbalance.scala.test
 
-import com.matkabal.loadbalance.service.LoadBalanceService
+import com.matkabal.loadbalance.service.RoundRobinLoadBalanceService
 import com.matkabal.loadbalance.test.entities.JobImplTest
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 
-class TestImplobWithScala {
+class RoundRobinTestsWithScala {
 
   @Test
   def testSimpleRoundRobin(): Unit = {
-    val loadBalance = new LoadBalanceService[String]
+    val loadBalance = new RoundRobinLoadBalanceService[String]
 
     val job1 = new JobImplTest
     val job2 = new JobImplTest
@@ -24,7 +24,7 @@ class TestImplobWithScala {
 
   @Test
   def testRoundRobinWithPreference(): Unit = {
-    val loadBalance = new LoadBalanceService[String]
+    val loadBalance = new RoundRobinLoadBalanceService[String]
 
     val job1 = new JobImplTest
     val job2 = new JobImplTest
@@ -46,7 +46,7 @@ class TestImplobWithScala {
 
   @Test
   def testRoundRobinWithAdditions(): Unit = {
-    val loadBalance = new LoadBalanceService[String]
+    val loadBalance = new RoundRobinLoadBalanceService[String]
 
     val job1 = new JobImplTest
     val job2 = new JobImplTest

@@ -4,14 +4,14 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import com.matkabal.loadbalance.entities.Job;
-import com.matkabal.loadbalance.service.LoadBalanceService;
+import com.matkabal.loadbalance.service.RoundRobinLoadBalanceService;
 import com.matkabal.loadbalance.test.entities.JobImplTest;
 
-public class LoadBalanceTest {
+public class RoundRobinLoadBalanceTest {
 	
 	@Test
 	public void testeWithSimpleQueue(){
-		LoadBalanceService<String> loadBalance = new LoadBalanceService<String>();
+		RoundRobinLoadBalanceService<String> loadBalance = new RoundRobinLoadBalanceService<String>();
 		
 		Job<String> job1 = new JobImplTest();
 		Job<String> job2 = new JobImplTest();
@@ -34,7 +34,7 @@ public class LoadBalanceTest {
 	
 	@Test
 	public void testeWithQueueAndClaraPreference(){
-		LoadBalanceService<String> loadBalance = new LoadBalanceService<String>();
+		RoundRobinLoadBalanceService<String> loadBalance = new RoundRobinLoadBalanceService<String>();
 		
 		Job<String> job1 = new JobImplTest();
 		Job<String> job2 = new JobImplTest();
@@ -60,7 +60,7 @@ public class LoadBalanceTest {
 
 	@Test
 	public void testeWithQueueAndClaraAndSoniaPreference(){
-		LoadBalanceService<String> loadBalance = new LoadBalanceService<String>();
+		RoundRobinLoadBalanceService<String> loadBalance = new RoundRobinLoadBalanceService<String>();
 		
 		Job<String> job1 = new JobImplTest();
 		Job<String> job2 = new JobImplTest();
@@ -92,7 +92,7 @@ public class LoadBalanceTest {
 	
 	@Test
 	public void testeWithQueueAndClaraAndSoniaAndMateusPreference(){
-		LoadBalanceService<String> loadBalance = new LoadBalanceService<String>();
+		RoundRobinLoadBalanceService<String> loadBalance = new RoundRobinLoadBalanceService<String>();
 		
 		Job<String> job1 = new JobImplTest();
 		Job<String> job2 = new JobImplTest();
@@ -127,7 +127,7 @@ public class LoadBalanceTest {
 	
 	@Test
 	public void testeWithQueueAndClaraAndSoniaAndMateusAndEvertonPreference(){
-		LoadBalanceService<String> loadBalance = new LoadBalanceService<String>();
+		RoundRobinLoadBalanceService<String> loadBalance = new RoundRobinLoadBalanceService<String>();
 		
 		Job<String> job1 = new JobImplTest();
 		Job<String> job2 = new JobImplTest();
@@ -174,7 +174,7 @@ public class LoadBalanceTest {
 	
 	@Test
 	public void testeWithQueueAndClaraAndSoniaAndMateusAndEvertonAndAnaPreference(){
-		LoadBalanceService<String> loadBalance = new LoadBalanceService<String>();
+		RoundRobinLoadBalanceService<String> loadBalance = new RoundRobinLoadBalanceService<String>();
 		
 		Job<String> job1 = new JobImplTest();
 		Job<String> job2 = new JobImplTest();
