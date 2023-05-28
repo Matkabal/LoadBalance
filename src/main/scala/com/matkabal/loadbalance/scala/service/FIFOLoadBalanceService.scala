@@ -9,6 +9,7 @@ import scala.collection.mutable
 class FIFOLoadBalanceService[T] extends LoadBalance[T]{
 
   private val listJobs:mutable.Queue[Job[T]] = mutable.Queue()
+  private val listJobsRunned:mutable.LinkedHashSet[Job[T]] = mutable.LinkedHashSet()
   val actualJob = 0
 
   override def addJobs(name: String, partialJob: Job[T]): Unit = {
@@ -17,11 +18,21 @@ class FIFOLoadBalanceService[T] extends LoadBalance[T]{
   }
 
   override def start(): T = {
-    listJobs.dequeue().process()
+    verifyIfQueueIsEmpty()
+    val job = listJobs.dequeue()
+    listJobsRunned.addOne(job)
+    job.process()
   }
 
   @deprecated
   override def addPreferenceWithName(name: String, preference: Int): Unit = {
+  }
 
+  private def verifyIfQueueIsEmpty(): Unit = {
+    if(listJobs.isEmpty){
+      listJobsRunned.map(job => {
+        listJobs.enqueue(job)
+      })
+    }
   }
 }

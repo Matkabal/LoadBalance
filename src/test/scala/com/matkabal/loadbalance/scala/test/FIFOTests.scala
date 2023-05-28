@@ -22,6 +22,22 @@ class FIFOTests {
   }
 
   @Test
+  def testSimpleIfFIFOCicle(): Unit = {
+    val loadBalance = new FIFOLoadBalanceService[String]
+
+    val job1 = new JobImplTest()
+    val job2 = new JobImplTest()
+
+    loadBalance.addJobs("p1", job1)
+    loadBalance.addJobs("p2", job2)
+
+    assertEquals(loadBalance.start(), "p1")
+    assertEquals(loadBalance.start(), "p2")
+    assertEquals(loadBalance.start(), "p1")
+    assertEquals(loadBalance.start(), "p2")
+  }
+
+  @Test
   def testSimpleIfFIFOWithAdditionJob(): Unit = {
     val loadBalance = new FIFOLoadBalanceService[String]
 
