@@ -35,6 +35,10 @@ public class LoadBalanceService<T> {
 		return listJobs.get(actualJob).process();
 	}
 
+	public void addPreferenceWithName(String name, int preference){
+		listJobs.get(mapNumberFromName.get(name)).setPreference(preference);
+	}
+
 	private void analising() {
 		if (stackOfJobs.isEmpty()) {
 			fillStackJobs();
